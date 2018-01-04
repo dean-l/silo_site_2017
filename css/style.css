@@ -1,0 +1,159 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.row {
+	margin-bottom: 0px;
+}
+
+
+.getstarted {
+	position: absolute;
+	bottom: 50%;
+	width: 40%;
+	padding: 20px 0;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.4);
+	font-size: 30px;
+}
+
+.outside{
+	width: 90%;	
+}
+
+.imageparent{
+	position:relative; 
+	margin-top: 5px;
+}
+
+.page-footer {
+	padding-top: 0;
+}
+
+nav .nav-title {
+	font-size: 18px;
+	padding-left: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	
+}
+
+nav .brand-logo{
+	font-size: 22px;
+	color: black;
+}
+
+.logo-text{
+	position: relative;
+	bottom: 10px;
+}
+
+.nav-wrapper{
+	padding-left: 50px;
+	padding-top: 15px;
+	line-height: 1.5;
+	padding-bottom: 8px;
+}
+
+.row .share {
+	color: white;
+	padding: 10px 10px 15px 10px;
+	
+}
+
+.container .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.share-pic {
+	padding: 5px 5px;
+	position: relative;
+	top: 8px;
+}
+
+.share-pic:hover{
+	background-color: rgba(0, 0, 0, 0.4)
+}
+
+
+.row .navi{
+	padding: 0px 10px;
+}
+
+
+.row .navi ul li a:hover{
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.row .navi ul li:hover{
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.row .navi ul li {
+	padding: 20px 0;
+}
+
+.content{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
+}
+
+.title{
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.label{
+	font-size: 15px;
+	font-weight: bold;
+	color: #484848;
+}
+
+.button{
+	text-align: center;
+	
+}
+
+.space{
+	margin-bottom: 20px;
+	border-bottom: 1px solid #8d8d8d;
+}
+#thispage{
+	color: rgba(255, 255, 255, 0.5);
+
+}
+
+.col.setting{
+	background-color: lightgray;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+

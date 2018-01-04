@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Silo Tests</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+    <script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
+    <script src="js/silodata.js"></script>
+
+    <script>
+        QUnit.test("Silo Tests", function( assert ) {
+        var testData1 = " 17701231  365 -99.9 999 -99.9 999 9999.9 999 999.9 999 999.9  999 999.9 999 9999.9 9999.9 31/12/1770      This file is SPACE DELIMITED for easy import into both spreadsheets and programs.   The first line 17701231 contains dummy data and is provided to allow spreadsheets to sense the columns    To read into a spreadsheet select DELIMITED and SPACE.           =========  The following essential information and notes should be kept in the data file ==========       The Patched Point Data system and data are copyright to the Queensland Government Department of Science, Information Technology and Innovation (DSITI) and Bureau of Meteorology.   SILO data, with the exception of Patched Point data for Queensland, are supplied to the licencee only and may not be given, lent, or sold to any other party       Notes:    * Patched Point data for station: 40221 DUTTON PARK                              Lat: -27.50 Long: 153.02    * Elevation:    6m     * Extracted from Silo on 20170612    * Please read the documentation on the Patched Point Data, http://www.longpaddock.qld.gov.au/silo        * As evaporation is read at 9am, it has been shifted to the day before       ie The evaporation measured on 20 April is in row for 19 April    * The 6 Source columns Smx, Smn, Srn, Sev, Ssl, Svp indicate the source of the data to their left, namely Max temp, Min temp, Rainfall, Evaporation, Radiation and Vapour Pressure respectively            0 = Station data, as supplied by Bureau, 23 = Nearby station, data from BoM       13 = Deaccumulated using nearby station,  15 = Deaccumulated using interpolated data          25 = interpolated daily observations,     75 = interpolated long term average         * Relative Humidity has been calculated using 9am VP, T.Max and T.Min      RHmaxT is estimated Relative Humidity at Temperature T.Max      RHminT is estimated Relative Humidity at Temperature T.Min    * The accuracy of the data depends on many factors including date, location, and variable.      For consistency data is supplied using one decimal place, however it is not accurate to that precision.      Further information is available from http://www.longpaddock.qld.gov.au/silo   ====================================================================================================      Date       Day T.Max Smx T.Min Smn Rain   Srn  Evap Sev Radn   Ssl VP    Svp RHmaxT RHminT Date2 (yyyymmdd)  ()  (oC)  ()  (oC)  ()   (mm)  ()  (mm)  () (MJ/m2) () (hPa)  ()   (%)    (%)  (ddmmyyyy) 20170601   152  21.0  25   6.5  25    0.0  25   3.4  25  15.0   25   9.0  25   36.2   93.0  1/06/2017 20170602   153  22.0  25   9.5  25    0.0  25   3.4  25  15.0   25  10.0  25   37.8   84.3  2/06/2017 20170603   154  22.5  25   8.0  25    0.0  25   3.4  25  13.0   25  11.0  25   40.4  100.0  3/06/2017 20170604   155  23.0  25   9.5  25    0.0  25   4.0  25  14.0   25  12.0  25   42.7  100.0  4/06/2017 20170605   156  23.0  25   8.5  25    0.6  25   2.0  25  14.0   25  12.0  25   42.7  100.0  5/06/2017 20170606   157  22.5  25   9.0  25    0.0  25   3.4  25  14.0   25  12.0  25   44.0  100.0  6/06/2017 20170607   158  20.0  25   8.0  25    0.0  25   3.4  25  15.0   25   8.0  25   34.2   74.6  7/06/2017 20170608   159  21.0  25   8.0  25    0.0  25   3.0  25  15.0   25   9.0  25   36.2   84.0  8/06/2017 "
+
+        var testEx1_1 = ["1/06/2017", "2/06/2017", "3/06/2017", "4/06/2017", "5/06/2017", "6/06/2017", "7/06/2017", "8/06/2017"];
+        var testEx1_2 = [6.5, 9.5, 8, 9.5, 8.5, 9, 8, 8];
+        var testEx1_3 = [21, 22, 22.5, 23, 23, 22.5, 20, 21];
+            
+        var testData2 = "problem with your start date problem with your finish date qdb patched format station start finish comment where: format MUST be one of STANDARD, FAO56, ALLMORT, EVAP_SPAN, SPAN, ALLDATA, PET, P51, GRASP, GRASS, AUSSIEGRASS, MONTHLY, RAINONLY, CENW, HOWOFTEN, 3PG, PPPG, 3PGW, CENTURY, APSIM, RUSTIC, RUSTICG Station MUST be in the range 1000...99999' Start MUST be in the range 18890101...today' Finish MUST be in the range 18890101...today'";
+            
+        var testEx2_1 = "Error: Date range must be from 01/01/1889 to today";
+            
+        var testData3 = "Dear SILO User,  We have been unable to fulfill your recent data request:         Location: Station   40359        Period: 02/05/2017 - 01/06/2017        Your Reference: NOCOMMENT  Because: Station not patched  Regards The SILO team";
+            
+        var testEx3_1 = "Error: Sorry, this station has not been patched";
+            
+        var testData4 = "Not a valid station Dear SILO User, We have been unable to fulfill your recent data request: Location: Station 99999 Period: 01/06/2017 - 07/06/2017 Your Reference: NOCOMMENT Because: Not a valid station Regards The SILO team";
+            
+        var testEx4_1 = "Error: Invalid Station";
+
+        assert.deepEqual(siloParse(testData1)[0], testEx1_1); // Testing parsed dates from testData1
+        assert.deepEqual(siloParse(testData1)[1], testEx1_2); // Testing parsed min temps from testData1
+        assert.deepEqual(siloParse(testData1)[2], testEx1_3); // Testing parsed max temps from testData1
+            
+        assert.deepEqual(siloParse(testData2), testEx2_1); // Testing out of bounds date range error
+            
+        assert.deepEqual(siloParse(testData3), testEx3_1); // Testing unpatched station error
+            
+        assert.deepEqual(siloParse(testData4), testEx4_1); // Testing invalid station error
+            
+        });
+    </script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+ 
+</body>
+</html>

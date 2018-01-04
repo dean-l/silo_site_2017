@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			 table, th, td {border: 2px solid gray; border-collapse: collapse;}
+			 th, td {width: 100px;}
+		</style>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+		
+			var url = "https://www.longpaddock.qld.gov.au/cgi-bin/silo/PatchedPointDataset.php?format=standard&station=40221&start=20170201&finish=20170228&username=DECO3800&password=UQ3800"
+			var txt = "silo_feb.txt"
+
+            drawTable();
+            drawChart();
+            
+            function removeSpace(entry) {
+                return entry != "";
+            }
+			
+			function drawTable() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var siloText = this.responseText;
+					if(siloText.search("(ddmmyyyy)")) {
+						var siloData = siloText.slice(siloText.search("(ddmmyyyy)")+10);
+					}
+					var siloDump = siloData.split(/[\r\s]/);
+                    var siloArray = siloDump.filter(removeSpace)
+                    
+					for(var j = 0; j<=10; j++) {
+                        
+						var newRow = document.createElement("TR");
+						var rowId = document.createAttribute("id");
+                        rowId.value = "currentrow";                    
+                        newRow.setAttributeNode(rowId);
+                        document.getElementById("silotable").appendChild(newRow);               
+                    
+						for(var i = 0; i<=16; i++) {
+							var newCell = document.createElement("TD");
+                            var newValue = document.createTextNode(siloArray.shift());
+                            newCell.appendChild(newValue);
+                            document.getElementById("silotable").appendChild(newCell);
+						}
+                        
+                        document.getElementById("currentrow").removeAttribute("id");
+					} 
+                }
+			};
+			xhttp.open('GET', txt, true);
+			xhttp.send();
+			}
+            
+            function drawChart() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var siloText = this.responseText;
+                        if(siloText.search("(ddmmyyyy)")) {
+                            var siloData = siloText.slice(siloText.search("(ddmmyyyy)")+10);
+                        }
+                        var siloDump = siloData.split(/[\r\s]/);
+                        var siloArray = siloDump.filter(removeSpace);
+                        var siloTemps = [['Date', 'Max Temp', 'Min Temp']];
+                        var datePos = 16;
+                        var minTPos = 4;
+                        var maxTPos = 2;
+                        for(var k=0; k<=20; k++) {
+                            var newEntry = [];
+                            newEntry.push(siloArray[datePos]);
+                            newEntry.push(parseFloat(siloArray[minTPos]));
+                            newEntry.push(parseFloat(siloArray[maxTPos])); 
+                            siloTemps.push(newEntry);
+                            datePos += 17;
+                            minTPos += 17;
+                            maxTPos += 17;
+                        }
+                        var data = google.visualization.arrayToDataTable(siloTemps);
+
+                        var options = {
+                          title: 'Dutton Park - February 2017',
+                          legend: { position: 'bottom' }
+                        };
+
+                        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                        chart.draw(data, options);
+                    }
+                };
+                xhttp.open('GET', txt, true);
+                xhttp.send();
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1>Demo Test Page for SILO Database</h1>
+		<p>Retrieving data at Dutton Park (40221) for February 2017</p>
+		<table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>T.Max</th>
+                    <th>Smx</th>
+                    <th>T.Min</th>
+                    <th>Smn</th>
+                    <th>Rain</th>
+                    <th>Srn</th>
+                    <th>Evap</th>
+                    <th>Sev</th>
+                    <th>Radn</th>
+                    <th>Ssl</th>
+                    <th>VP</th>
+                    <th>Svp</th>
+                    <th>RHmaxT</th>
+                    <th>RHminT</th>
+                    <th>Date2</th>
+                </tr>
+            </thead>
+            <tbody  id="silotable">
+            </tbody>
+		</table>
+        <div id="curve_chart" style="height: 500px"></div>
+	</body>
+</html>

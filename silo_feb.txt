@@ -1,0 +1,66 @@
+
+"17701231" 365 -99.9 999 -99.9 999 9999.9 999 999.9 999 999.9  999 999.9 999 9999.9 9999.9 31/12/1770
+""
+" This file is SPACE DELIMITED for easy import into both spreadsheets and programs."
+"The first line 17701231 contains dummy data and is provided to allow spreadsheets to sense the columns"
+" To read into a spreadsheet select DELIMITED and SPACE."
+" "
+" "
+"=========  The following essential information and notes should be kept in the data file =========="
+" "
+"The Patched Point Data system and data are copyright to the Queensland Government Department of Science, Information Technology and Innovation (DSITI) and Bureau of Meteorology."
+"SILO data, with the exception of Patched Point data for Queensland, are supplied to the licencee only and may not be given, lent, or sold to any other party"
+" "
+"Notes:"
+" * Patched Point data for station: 40221 DUTTON PARK                              Lat: -27.50 Long: 153.02"
+" * Elevation:    6m "
+" * Extracted from Silo on 20170328"
+" * Please read the documentation on the Patched Point Data, http://www.longpaddock.qld.gov.au/silo"
+" "
+" * As evaporation is read at 9am, it has been shifted to the day before"
+"    ie The evaporation measured on 20 April is in row for 19 April"
+" * The 6 Source columns Smx, Smn, Srn, Sev, Ssl, Svp indicate the source of the data to their left, namely Max temp, Min temp, Rainfall, Evaporation, Radiation and Vapour Pressure respectively "
+" "
+"    0 = Station data, as supplied by Bureau, 23 = Nearby station, data from BoM "
+"   13 = Deaccumulated using nearby station,  15 = Deaccumulated using interpolated data"
+" "
+"   25 = interpolated daily observations,     75 = interpolated long term average"
+" " 
+" * Relative Humidity has been calculated using 9am VP, T.Max and T.Min"
+"   RHmaxT is estimated Relative Humidity at Temperature T.Max"
+"   RHminT is estimated Relative Humidity at Temperature T.Min"
+" * The accuracy of the data depends on many factors including date, location, and variable."
+"   For consistency data is supplied using one decimal place, however it is not accurate to that precision."
+"   Further information is available from http://www.longpaddock.qld.gov.au/silo"
+"===================================================================================================="
+" "
+Date       Day T.Max Smx T.Min Smn Rain   Srn  Evap Sev Radn   Ssl VP    Svp RHmaxT RHminT Date2
+(yyyymmdd)  ()  (oC)  ()  (oC)  ()   (mm)  ()  (mm)  () (MJ/m2) () (hPa)  ()   (%)    (%)  (ddmmyyyy)
+20170201    32  33.0  25  22.0  25    0.0  25   9.8  25  29.0   25  23.0  25   45.7   87.0  1/02/2017
+20170202    33  33.5  25  23.5  25    0.0  25   9.8  25  28.0   25  24.0  25   46.4   82.9  2/02/2017
+20170203    34  32.5  25  24.5  25    0.0  25   9.2  25  26.0   25  25.0  25   51.1   81.3  3/02/2017
+20170204    35  33.0  25  22.0  25    0.0  25   8.6  25  28.0   25  23.0  25   45.7   87.0  4/02/2017
+20170205    36  32.5  25  23.5  25    0.0  25   9.0  25  26.0   25  25.0  25   51.1   86.4  5/02/2017
+20170206    37  33.0  25  22.5  25    0.0  25   9.2  25  28.0   25  24.0  25   47.7   88.1  6/02/2017
+20170207    38  33.0  25  22.5  25    0.0  25   9.4  25  26.0   25  24.0  25   47.7   88.1  7/02/2017
+20170208    39  32.5  25  24.0  25    0.0  25   9.8  25  23.0   25  24.0  25   49.1   80.5  8/02/2017
+20170209    40  32.0  25  22.5  25    4.8  25   8.2  25  24.0   25  26.0  25   54.7   95.4  9/02/2017
+20170210    41  33.5  25  22.0  25    0.6  25   7.8  25  27.0   25  25.0  25   48.3   94.6 10/02/2017
+20170211    42  37.5  25  21.5  25    0.0  25   9.2  25  28.0   25  24.0  25   37.2   93.6 11/02/2017
+20170212    43  38.5  25  22.0  25    0.0  25  11.6  25  24.0   25  24.0  25   35.3   90.8 12/02/2017
+20170213    44  35.0  25  26.5  25    0.0  25   7.8  25  14.0   25  26.0  25   46.2   75.1 13/02/2017
+20170214    45  30.0  25  22.5  25   12.0  25   8.0  25  15.0   25  23.0  25   54.2   84.4 14/02/2017
+20170215    46  30.0  25  20.5  25    0.1  25   7.8  25  21.0   25  20.0  25   47.1   83.0 15/02/2017
+20170216    47  31.5  25  21.0  25    0.0  25   7.6  25  25.0   25  21.0  25   45.4   84.5 16/02/2017
+20170217    48  32.0  25  21.5  25    0.0  25   8.6  25  26.0   25  21.0  25   44.2   81.9 17/02/2017
+20170218    49  32.5  25  22.0  25    0.0  25  10.2  25  25.0   25  20.0  25   40.9   75.7 18/02/2017
+20170219    50  32.5  25  22.0  25    1.0  25   5.2  25  13.0   25  24.0  25   49.1   90.8 19/02/2017
+20170220    51  31.5  25  21.0  25   11.2  25   7.8  25  24.0   25  23.0  25   49.8   92.5 20/02/2017
+20170221    52  31.5  25  21.0  25    0.0  25   6.0  25  25.0   25  22.0  25   47.6   88.5 21/02/2017
+20170222    53  30.0  25  21.5  25    0.0  25   8.8  25  22.0   25  20.0  25   47.1   78.0 22/02/2017
+20170223    54  30.5  25  20.5  25    0.0  25   8.8  25  25.0   25  16.0  25   36.6   66.4 23/02/2017
+20170224    55  31.5  25  18.5  25    0.0  25   8.6  25  27.0   25  19.0  25   41.1   89.3 24/02/2017
+20170225    56  31.5  25  19.0  25    0.0  25   9.2  25  26.0   25  18.0  25   38.9   82.0 25/02/2017
+20170226    57  31.0  25  19.5  25    0.0  25   7.8  25  22.0   25  20.0  25   44.5   88.3 26/02/2017
+20170227    58  29.0  25  20.0  25    0.0  25   2.8  25  17.0   25  19.0  25   47.4   81.3 27/02/2017
+20170228    59  30.5  25  18.5  25    0.0  25   6.0  25  23.0   25  19.0  25   43.5   89.3 28/02/2017
